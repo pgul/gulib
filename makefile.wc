@@ -1,0 +1,59 @@
+CC = wcc386
+LINK = wcl386
+LIB = wlib
+COPT = /fi=os2defs.h /bm /w3 -dTIMESTRUCT /d2
+LOPT = /x /k32k
+
+.c.obj:
+	$(CC) $(COPT) $<
+
+All:	glibp.lib
+
+OBJS= \
+    add.obj \
+    addspc.obj \
+    barfill.obj \
+    barputco.obj \
+    biginkey.obj \
+    bldramka.obj \
+    cline.obj \
+    cursor.obj \
+    edit.obj \
+    evakuate.obj \
+    fileext.obj \
+    fselect.obj \
+    gettoday.obj \
+    gmouse.obj \
+    graph.obj \
+    gt.obj \
+    help.obj \
+    help_prn.obj \
+    inkey.obj \
+    key2str.obj \
+    menu.obj \
+    message.obj \
+    mkorr.obj \
+    mouse.obj \
+    mramka.obj \
+    mul.obj \
+    myalloc.obj \
+    myreallo.obj \
+    o.obj \
+    plakat.obj \
+    quere.obj \
+    ramka.obj \
+    remenu.obj \
+    scrgets.obj \
+    scrlmenu.obj \
+    scroll.obj \
+    scr_base.obj \
+    smenu.obj \
+    sub.obj \
+    uppertab.obj
+
+
+glibp.lib:	$(OBJS)
+	$(LIB) $@ +- $?
+
+clean:  .SYMBOLIC
+	del *.obj *.bak

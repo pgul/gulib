@@ -1,0 +1,61 @@
+CC = gcc
+LINK = gcc
+LIB = ar
+CFLAGS = -c -Zmt -Zcrtdll -Wall -O2 -D__OS2__ -funsigned-char -Dcdecl= -Dpascal= -Dnear= -Dhuge= -Dfarmalloc=malloc -Dfarfree=free -o $@
+
+.SUFFIXES: .o
+
+%.o:	%.c
+	$(CC) $(CFLAGS) $<
+
+All:	glibpe.a
+
+OBJS= \
+    add.o \
+    addspc.o \
+    barfill.o \
+    barputco.o \
+    biginkey.o \
+    bldramka.o \
+    cline.o \
+    cursor.o \
+    edit.o \
+    evakuate.o \
+    fileext.o \
+    gmouse.o \
+    graph.o \
+    gt.o \
+    help.o \
+    help_prn.o \
+    inkey.o \
+    key2str.o \
+    menu.o \
+    message.o \
+    mkorr.o \
+    mouse.o \
+    mramka.o \
+    mul.o \
+    myalloc.o \
+    myreallo.o \
+    o.o \
+    plakat.o \
+    quere.o \
+    ramka.o \
+    remenu.o \
+    scrgets.o \
+    scrlmenu.o \
+    scroll.o \
+    scr_base.o \
+    smenu.o \
+    sub.o \
+    uppertab.o
+#    fselect.o
+#    gettoday.o
+
+$(OBJS):	glib.h
+
+glibpe.a:	$(OBJS)
+	$(LIB) rc $@ $?
+
+clean:
+	del *.o *.bak

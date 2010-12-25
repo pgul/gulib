@@ -1,0 +1,61 @@
+CC = gcc
+LINK = gcc
+LIB = emxomfar
+CFLAGS = -c -Zomf -Zmt -Zcrtdll -Wall -O2 -D__OS2__ -funsigned-char -Dcdecl= -Dpascal= -Dnear= -Dhuge= -Dfarmalloc=malloc -Dfarfree=free -o $@
+
+.SUFFIXES: .obj
+
+%.obj:	%.c
+	$(CC) $(CFLAGS) $<
+
+All:	glibpe.lib
+
+OBJS= \
+    add.obj \
+    addspc.obj \
+    barfill.obj \
+    barputco.obj \
+    biginkey.obj \
+    bldramka.obj \
+    cline.obj \
+    cursor.obj \
+    edit.obj \
+    evakuate.obj \
+    fileext.obj \
+    gmouse.obj \
+    graph.obj \
+    gt.obj \
+    help.obj \
+    help_prn.obj \
+    inkey.obj \
+    key2str.obj \
+    menu.obj \
+    message.obj \
+    mkorr.obj \
+    mouse.obj \
+    mramka.obj \
+    mul.obj \
+    myalloc.obj \
+    myreallo.obj \
+    o.obj \
+    plakat.obj \
+    quere.obj \
+    ramka.obj \
+    remenu.obj \
+    scrgets.obj \
+    scrlmenu.obj \
+    scroll.obj \
+    scr_base.obj \
+    smenu.obj \
+    sub.obj \
+    uppertab.obj
+#    fselect.obj
+#    gettoday.obj
+
+$(OBJS):	glib.h
+
+glibpe.lib:	$(OBJS)
+	$(LIB) rc $@ $?
+
+clean:
+	del *.obj *.bak
